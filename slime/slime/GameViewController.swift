@@ -16,7 +16,7 @@ class GameViewController: UIViewController {
         
         // 뷰, 장면 생성
         if let view = view as? SKView {
-            let scene = GameScene(size: CGSize(width: 300, height: 300))
+            let scene = GameScene()
             
             scene.scaleMode = .resizeFill
             view.ignoresSiblingOrder = true
