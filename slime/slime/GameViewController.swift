@@ -10,13 +10,14 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let scene = GameScene()
+        
         // 뷰, 장면 생성
         if let view = view as? SKView {
-            let scene = GameScene()
             
             scene.scaleMode = .resizeFill
             view.ignoresSiblingOrder = true
@@ -24,6 +25,7 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
             view.presentScene(scene)
         }
+
     }
 
     override var prefersStatusBarHidden: Bool {

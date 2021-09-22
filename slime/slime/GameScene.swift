@@ -8,6 +8,25 @@
 import SpriteKit
 import GameplayKit
 
+struct Level {
+    var current = 0
+    var count = 0
+    var levelUp = false
+    
+    mutating func levelPlus() {
+        levelUp = false
+        
+        count += 1
+        print(count)
+        
+        if (count == 20) {
+            count = 0
+            current += 1
+            levelUp = true
+        }
+    }
+}
+
 class GameScene: SKScene {
     
     // 현재 노드
@@ -15,6 +34,12 @@ class GameScene: SKScene {
     
     // 배경 노드
     var background = SKSpriteNode(imageNamed: "frame")
+    
+    // 버튼 노드
+    var levelUpButton = SKSpriteNode(imageNamed: "heart")
+    
+    // 레벨 관련 변수
+    var level = Level()
     
     // 노드의 마지막 위치
     // update 함수로 계속 갱신함
@@ -36,9 +61,12 @@ class GameScene: SKScene {
         
         // 배경화면 노드 설정
         set_background()
+        // 버튼 노드 설정
+        set_button()
         
         // 노드 장면에 추가
         self.addChild(background)
+        self.addChild(levelUpButton)
         self.addChild(currentSlime)
     }
     
@@ -49,6 +77,14 @@ class GameScene: SKScene {
         background.size = CGSize(width: 650, height: 700)
         background.position = CGPoint(x: 0, y: 20)
         background.zPosition = -1
+    }
+    
+    // 버튼 노드 설정
+    func set_button() {
+        levelUpButton.name = "levelButton"
+        levelUpButton.size = CGSize(width: 30, height: 30)
+        levelUpButton.position = CGPoint(x: 90, y: 110)
+        
     }
     
     func buildSlime(_ direction: String) -> SKSpriteNode {
@@ -103,6 +139,12 @@ class GameScene: SKScene {
         
         // 터치한 곳의 좌표가 있으면 실행
         if let location = touch?.location(in: self) {
+            
+            // 버튼 노드 부근이면 레벨 카운트 +1
+            if location.y > 95 && location.x > 85 {
+                level.levelPlus()
+                return
+            }
 
             // 좌표 x, y
             // y 축으로는 이동하지 않도록 0 고정
