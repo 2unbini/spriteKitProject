@@ -9,7 +9,7 @@ import SpriteKit
 import GameplayKit
 
 struct Level {
-    var current = 0
+    var current = 1
     var count = 0
     var levelUp = false
     
@@ -24,6 +24,28 @@ struct Level {
             current += 1
             levelUp = true
         }
+    }
+    
+    func buildNextLevelSlime(_ lastPosition: CGPoint) -> (SKSpriteNode, [SKTexture]) {
+        var nextSlime = SKSpriteNode()
+        var textureArray = [SKTexture]()
+        
+        for i in 1...4 {
+            let name = "front\(current)_\(i).png"
+            textureArray.append(SKTexture(imageNamed: name))
+        }
+        
+        let firstSlime = "front\(current)_1.png"
+        nextSlime = SKSpriteNode(imageNamed: firstSlime)
+        
+        nextSlime.size = CGSize(width: 80, height: 80)
+        nextSlime.name = "front"
+        nextSlime.position = lastPosition
+        
+        let slimeAnimation = SKAction.animate(with: textureArray, timePerFrame: 0.2)
+        nextSlime.run(SKAction.repeatForever(slimeAnimation))
+        
+        return (nextSlime, textureArray)
     }
 }
 
@@ -89,21 +111,20 @@ class GameScene: SKScene {
     
     func buildSlime(_ direction: String) -> SKSpriteNode {
         
-        // 텍스처 아틀라스 폴더 찾아서 불러오기
-        let textureAtlas = SKTextureAtlas(named: "slime_\(direction)")
         var tempArray = [SKTexture]()
         var slime = SKSpriteNode()
+ 
         
         // 각 이미지 텍스쳐로 만들어서 배열에 저장
         for i in 1...4 {
-            let name = "\(direction)_\(i).png"
+            let name = "\(direction)\(level.current)_\(i).png"
             tempArray.append(SKTexture(imageNamed: name))
         }
+        
         textureArray = tempArray
 
         // 슬라임 노드의 첫 번째 이미지 지정
-        // 1번 이미지가 아님..
-        let firstSlime = textureAtlas.textureNames[0]
+        let firstSlime = "\(direction)\(level.current)_1.png"
         slime = SKSpriteNode(imageNamed: firstSlime)
         
         // 슬라임 노드 설정
@@ -141,8 +162,16 @@ class GameScene: SKScene {
         if let location = touch?.location(in: self) {
             
             // 버튼 노드 부근이면 레벨 카운트 +1
+            // 다음 레벨 슬라임 생성
             if location.y > 95 && location.x > 85 {
                 level.levelPlus()
+                
+                if level.levelUp == true {
+                    (currentSlime, textureArray) = level.buildNextLevelSlime(lastPosition)
+                    self.children.last?.removeFromParent()
+                    self.addChild(currentSlime)
+                }
+                
                 return
             }
 
