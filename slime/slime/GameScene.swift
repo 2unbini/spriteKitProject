@@ -8,47 +8,6 @@
 import SpriteKit
 import GameplayKit
 
-struct Level {
-    var current = 1
-    var count = 0
-    var levelUp = false
-    
-    mutating func levelPlus() {
-        levelUp = false
-        
-        count += 1
-        print(count)
-        
-        if (count == 20) {
-            count = 0
-            current += 1
-            levelUp = true
-        }
-    }
-    
-    func buildNextLevelSlime(_ lastPosition: CGPoint) -> (SKSpriteNode, [SKTexture]) {
-        var nextSlime = SKSpriteNode()
-        var textureArray = [SKTexture]()
-        
-        for i in 1...4 {
-            let name = "front\(current)_\(i).png"
-            textureArray.append(SKTexture(imageNamed: name))
-        }
-        
-        let firstSlime = "front\(current)_1.png"
-        nextSlime = SKSpriteNode(imageNamed: firstSlime)
-        
-        nextSlime.size = CGSize(width: 80, height: 80)
-        nextSlime.name = "front"
-        nextSlime.position = lastPosition
-        
-        let slimeAnimation = SKAction.animate(with: textureArray, timePerFrame: 0.2)
-        nextSlime.run(SKAction.repeatForever(slimeAnimation))
-        
-        return (nextSlime, textureArray)
-    }
-}
-
 class GameScene: SKScene {
     
     // 현재 노드
@@ -59,6 +18,9 @@ class GameScene: SKScene {
     
     // 버튼 노드
     var levelUpButton = SKSpriteNode(imageNamed: "heart")
+    
+    // 메시지 버튼 노드
+    var messageButton = SKSpriteNode(imageNamed: "message")
     
     // 레벨 관련 변수
     var level = Level()
@@ -84,11 +46,14 @@ class GameScene: SKScene {
         // 배경화면 노드 설정
         set_background()
         // 버튼 노드 설정
-        set_button()
+        set_levelUpButton()
+        // 메세지 버튼 노드 설정
+        set_messageListButton()
         
         // 노드 장면에 추가
         self.addChild(background)
         self.addChild(levelUpButton)
+        self.addChild(messageButton)
         self.addChild(currentSlime)
     }
     
@@ -102,11 +67,16 @@ class GameScene: SKScene {
     }
     
     // 버튼 노드 설정
-    func set_button() {
+    func set_levelUpButton() {
         levelUpButton.name = "levelButton"
         levelUpButton.size = CGSize(width: 30, height: 30)
         levelUpButton.position = CGPoint(x: 90, y: 110)
-        
+    }
+    
+    func set_messageListButton() {
+        messageButton.name = "messageButton"
+        messageButton.size = CGSize(width: 30, height: 30)
+        messageButton.position = CGPoint(x: 90, y: 75)
     }
     
     func buildSlime(_ direction: String) -> SKSpriteNode {
@@ -128,7 +98,7 @@ class GameScene: SKScene {
         slime = SKSpriteNode(imageNamed: firstSlime)
         
         // 슬라임 노드 설정
-        slime.size = CGSize(width: 80, height: 80)
+        slime.size = CGSize(width: level.size, height: level.size)
         slime.name = direction
         slime.position = lastPosition
         
@@ -171,6 +141,17 @@ class GameScene: SKScene {
                     self.children.last?.removeFromParent()
                     self.addChild(currentSlime)
                 }
+                
+                return
+            }
+            
+            // 메시지 버튼 노드 부근이면 신 교체
+            
+            if location.y > 65 && location.x > 85 {
+                let messageListScene = MessageListScene()
+                
+                messageListScene.scaleMode = .resizeFill
+                view?.presentScene(messageListScene)
                 
                 return
             }
