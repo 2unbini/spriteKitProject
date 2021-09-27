@@ -7,6 +7,7 @@
 
 import SpriteKit
 import GameplayKit
+import SwiftUI
 
 class GameScene: SKScene {
     
@@ -59,7 +60,6 @@ class GameScene: SKScene {
     
     // 배경화면 노드 설정
     func set_background() {
-        
         background.name = "background"
         background.size = CGSize(width: 650, height: 700)
         background.position = CGPoint(x: 0, y: 20)
@@ -73,6 +73,7 @@ class GameScene: SKScene {
         levelUpButton.position = CGPoint(x: 90, y: 110)
     }
     
+    // 메시지 버튼 노드 설정
     func set_messageListButton() {
         messageButton.name = "messageButton"
         messageButton.size = CGSize(width: 30, height: 30)
@@ -148,10 +149,10 @@ class GameScene: SKScene {
             // 메시지 버튼 노드 부근이면 신 교체
             
             if location.y > 65 && location.x > 85 {
-                let messageListScene = MessageListScene()
-                
-                messageListScene.scaleMode = .resizeFill
-                view?.presentScene(messageListScene)
+                let tableScene = TableScene()
+
+                tableScene.scaleMode = .resizeFill
+                view?.presentScene(tableScene)
                 
                 return
             }

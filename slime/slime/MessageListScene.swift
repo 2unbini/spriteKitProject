@@ -7,17 +7,21 @@
 
 import Foundation
 import SpriteKit
+import SwiftUI
 
 struct Message {
     var id: Int
     var title: String
 }
 
+// tableView로 바꿈!
+
 class MessageListScene: SKScene {
     
     // test용 인스턴스
     let messageList = [Message(id: 1, title: "hello"), Message(id: 2, title: "cool"), Message(id: 3, title: "bye"), Message(id: 4, title: "more class"), Message(id: 5, title: "T.T")]
     let pos = [60, 25, -10, -45, -80]
+    let boxpos = [70, 35, 0, -35, -70]
     
     // 배경화면 노드
     var background = SKSpriteNode(imageNamed: "frame")
@@ -32,7 +36,7 @@ class MessageListScene: SKScene {
         
         set_background()
         set_arrowButton()
-        set_lists()
+        //set_lists()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -42,7 +46,7 @@ class MessageListScene: SKScene {
         if let location = touch?.location(in: self) {
             
             // 뒤로가기 버튼이 있는 부분을 누르면 GameScene으로 이동
-            if location.y > 95 && location.x < -85 {
+            if location.y >= 95 && location.x <= -85 {
                 
                 let scene = GameScene()
                 
@@ -56,12 +60,19 @@ class MessageListScene: SKScene {
     
     // 각 리스트 생성
     // 지금은 LabelNode인데, list화 할 수 있는 노드 찾아야됨
+    // SKLabelNode + SkSpriteNode = 극혐
     func set_lists() {
         for i in 0..<messageList.count {
+            let boxNode = SKSpriteNode(imageNamed: "box")
             let listNode = SKLabelNode(text: messageList[i].title)
             listNode.fontName = "AppleSDGothicNeo-SemiBold"
-            listNode.fontSize = 30
+            listNode.fontSize = 18
+            listNode.fontColor = .black
             listNode.position = CGPoint(x: 0, y: pos[i])
+            
+            boxNode.size = CGSize(width: 230, height: 40)
+            boxNode.position = CGPoint(x: 0, y: boxpos[i])
+            addChild(boxNode)
             addChild(listNode)
         }
     }

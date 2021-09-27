@@ -1,5 +1,5 @@
 //
-//  level.swift
+//  Level.swift
 //  slime
 //
 //  Created by 권은빈 on 2021/09/26.
@@ -14,19 +14,24 @@ struct Level {
     var size = 80
     var levelUp = false
     
+    // 레벨업 조건
+    static var condition = [(0, 0), (1, 20), (2, 50), (3, 100), (4, 200)]
+    
     mutating func levelPlus() {
         levelUp = false
         
         count += 1
         print(count)
         
-        if (count == 20) {
+        if (count == Level.condition[current].1) {
             count = 0
             current += 1
             size += size / 2
             levelUp = true
         }
         
+        // 레벨 3 이상의 이미지 없으므로 계속 2 이미지 사용
+        // 변경필요!!
         if (current >= 3) {
             current = 2
         }

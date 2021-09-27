@@ -15,7 +15,6 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         let scene = GameScene()
-        
         // 뷰, 장면 생성
         if let view = view as? SKView {
             
@@ -24,6 +23,7 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
             view.presentScene(scene)
+
         }
 
     }
