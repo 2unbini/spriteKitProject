@@ -9,12 +9,14 @@ import Foundation
 import SpriteKit
 import SwiftUI
 
+// tableView로 바꿈!
+
+/*
+
 struct Message {
     var id: Int
     var title: String
 }
-
-// tableView로 바꿈!
 
 class MessageListScene: SKScene {
     
@@ -95,3 +97,5 @@ class MessageListScene: SKScene {
         addChild(backwardButton)
     }
 }
+
+*/

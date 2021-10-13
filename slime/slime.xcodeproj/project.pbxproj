@@ -9,11 +9,7 @@
 /* Begin PBXBuildFile section */
 		A83CABBC26FFFA6F00BA4DCE /* MessageListScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83CABBB26FFFA6F00BA4DCE /* MessageListScene.swift */; };
 		A83CABBE2700020B00BA4DCE /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = A83CABBD2700020B00BA4DCE /* Level.swift */; };
-		A86A0D8A270032A200FB70AE /* SaveData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86A0D89270032A200FB70AE /* SaveData.swift */; };
 		A86A0D8C27006A8700FB70AE /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A86A0D8B27006A8700FB70AE /* TableView.swift */; };
-		A8BE3CE926F73FD0000931E0 /* slime_front.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A8BE3CE326F73FD0000931E0 /* slime_front.atlas */; };
-		A8BE3CEB26F73FD0000931E0 /* slime_left.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A8BE3CE526F73FD0000931E0 /* slime_left.atlas */; };
-		A8BE3CEC26F73FD0000931E0 /* slime_right.atlas in Resources */ = {isa = PBXBuildFile; fileRef = A8BE3CE626F73FD0000931E0 /* slime_right.atlas */; };
 		A8E62D8726F44A4C00B992B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E62D8626F44A4C00B992B4 /* AppDelegate.swift */; };
 		A8E62D8D26F44A4C00B992B4 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E62D8C26F44A4C00B992B4 /* GameScene.swift */; };
 		A8E62D8F26F44A4C00B992B4 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E62D8E26F44A4C00B992B4 /* GameViewController.swift */; };
@@ -25,11 +21,7 @@
 /* Begin PBXFileReference section */
 		A83CABBB26FFFA6F00BA4DCE /* MessageListScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListScene.swift; sourceTree = "<group>"; };
 		A83CABBD2700020B00BA4DCE /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
-		A86A0D89270032A200FB70AE /* SaveData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveData.swift; sourceTree = "<group>"; };
 		A86A0D8B27006A8700FB70AE /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
-		A8BE3CE326F73FD0000931E0 /* slime_front.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = slime_front.atlas; path = ../../slime_front.atlas; sourceTree = "<group>"; };
-		A8BE3CE526F73FD0000931E0 /* slime_left.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = slime_left.atlas; path = ../../slime_left.atlas; sourceTree = "<group>"; };
-		A8BE3CE626F73FD0000931E0 /* slime_right.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = slime_right.atlas; path = ../../slime_right.atlas; sourceTree = "<group>"; };
 		A8E62D8326F44A4C00B992B4 /* slime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = slime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8E62D8626F44A4C00B992B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8E62D8C26F44A4C00B992B4 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -70,9 +62,6 @@
 		A8E62D8526F44A4C00B992B4 /* slime */ = {
 			isa = PBXGroup;
 			children = (
-				A8BE3CE326F73FD0000931E0 /* slime_front.atlas */,
-				A8BE3CE526F73FD0000931E0 /* slime_left.atlas */,
-				A8BE3CE626F73FD0000931E0 /* slime_right.atlas */,
 				A8E62D8626F44A4C00B992B4 /* AppDelegate.swift */,
 				A8E62D8C26F44A4C00B992B4 /* GameScene.swift */,
 				A83CABBB26FFFA6F00BA4DCE /* MessageListScene.swift */,
@@ -81,7 +70,6 @@
 				A8E62D9326F44A4E00B992B4 /* Assets.xcassets */,
 				A8E62D9526F44A4E00B992B4 /* Info.plist */,
 				A83CABBD2700020B00BA4DCE /* Level.swift */,
-				A86A0D89270032A200FB70AE /* SaveData.swift */,
 				A86A0D8B27006A8700FB70AE /* TableView.swift */,
 				A8F04CAE27016A2E00E18426 /* CellView.swift */,
 			);
@@ -146,9 +134,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A8E62D9226F44A4C00B992B4 /* Main.storyboard in Resources */,
-				A8BE3CEC26F73FD0000931E0 /* slime_right.atlas in Resources */,
-				A8BE3CE926F73FD0000931E0 /* slime_front.atlas in Resources */,
-				A8BE3CEB26F73FD0000931E0 /* slime_left.atlas in Resources */,
 				A8E62D9426F44A4E00B992B4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,7 +147,6 @@
 			files = (
 				A8E62D8D26F44A4C00B992B4 /* GameScene.swift in Sources */,
 				A8E62D8F26F44A4C00B992B4 /* GameViewController.swift in Sources */,
-				A86A0D8A270032A200FB70AE /* SaveData.swift in Sources */,
 				A86A0D8C27006A8700FB70AE /* TableView.swift in Sources */,
 				A8F04CAF27016A2E00E18426 /* CellView.swift in Sources */,
 				A83CABBE2700020B00BA4DCE /* Level.swift in Sources */,

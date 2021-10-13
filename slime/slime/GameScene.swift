@@ -9,6 +9,8 @@ import SpriteKit
 import GameplayKit
 import SwiftUI
 
+// MARK: Basic game Scene! not View - with SpriteKit
+
 class GameScene: SKScene {
     
     // 현재 노드
